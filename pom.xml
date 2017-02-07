@@ -5,17 +5,52 @@
 
     <groupId>com.epam.jmp</groupId>
     <artifactId>cms</artifactId>
+    <packaging>war</packaging>
     <name>Contact Management System</name>
     <version>0.0.1</version>
 
     <properties>
         <jdk.version>1.8</jdk.version>
+        <spring.version>4.3.6.RELEASE</spring.version>
+        <jstl.version>1.2.1</jstl.version>
+        <servletapi.version>3.1.0</servletapi.version>
     </properties>
 
-    <dependencyManagement>
-        <dependencies>
+    <dependencies>
 
-        </dependencies>
-    </dependencyManagement>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp.jstl</groupId>
+            <artifactId>javax.servlet.jsp.jstl-api</artifactId>
+            <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servletapi.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
