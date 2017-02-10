@@ -1,6 +1,5 @@
 package com.epam.jmp.config;
 
-import com.epam.jmp.service.ServiceConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -19,19 +18,15 @@ public class WebAppInitializer implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 
-        // Create the root Spring application context
+        // Create the root Spring application context that incorporates the annotated DispatcherServlet configuration
         AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(ServiceConfig.class);
+        rootContext.register(SpringWebMvcConfig.class);
 
-        // Manage the lifecycle of the root application context
+        // Adding the listener for the rootContext
         servletContext.addListener(new ContextLoaderListener(rootContext));
 
-        // Create the dispatcher servlet's Spring application context
-        AnnotationConfigWebApplicationContext dispatcherServlet = new AnnotationConfigWebApplicationContext();
-        dispatcherServlet.register(SpringWebMvcConfig.class);
-
-        // Register and map the dispatcher servlet
-        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(dispatcherServlet));
+        //Registering the dispatcher servlet mappings
+        ServletRegistration.Dynamic dispatcher = servletContext.addServlet("dispatcher", new DispatcherServlet(rootContext));
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
     }

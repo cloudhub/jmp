@@ -18,11 +18,13 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan("com.epam.jmp")
 public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 
+    // equivalents for <mvc:resources/> tags
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/WEB-INF/views/**").addResourceLocations("/views/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
+    // equivalent for <mvc:default-servlet-handler/> tag
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
