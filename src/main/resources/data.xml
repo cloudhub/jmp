@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<contacts>
+    <contact>
+        <id>1</id>
+        <firstName>Bob</firstName>
+        <lastName>Thomas</lastName>
+        <email>bob.thomas@email.com</email>
+    </contact>
+    <contact>
+        <id>2</id>
+        <firstName>Joe</firstName>
+        <lastName>Brown</lastName>
+        <email>joe.brown@email.com</email>
+    </contact>
+    <contact>
+        <id>3</id>
+        <firstName>Anthony</firstName>
+        <lastName>Pratt</lastName>
+        <email>anthony.pratt@email.com</email>
+    </contact>
+    <contact>
+        <id>4</id>
+        <firstName>Angela</firstName>
+        <lastName>Paul</lastName>
+        <email>angela.paul@email.com</email>
+    </contact>
+    <contact>
+        <id>5</id>
+        <firstName>John</firstName>
+        <lastName>McKinley</lastName>
+        <email>john.mckinley@email.com</email>
+    </contact>
+</contacts>
