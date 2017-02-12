@@ -1,6 +1,9 @@
 package com.epam.jmp.controller;
 
+import com.epam.jmp.dao.ContactDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +17,33 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/")
-public class HelloWorldController {
+public class ContactController {
+
+    @Autowired
+    private ContactDAO contactDAO;
 
     @RequestMapping(value = "welcome", method = RequestMethod.GET)
     public String printHello(ModelMap model) {
         model.addAttribute("msg", "OK");
         return "index";
+    }
+
+    /**
+     * Get all contacts
+     *
+     * @param model all contacts from XML file
+     * @return renders all contacts on the page
+     */
+    @RequestMapping(value = "contacts", method = RequestMethod.GET)
+    public String getAllContacts(Model model) {
+        model.addAttribute("contacts", contactDAO.getContactsFromXml());
+        return "contacts";
+    }
+
+    @RequestMapping(path = "delete/{id}", method = RequestMethod.GET)
+    public String deleteContact(@PathVariable String id) {
+        contactDAO.deleteContact(id);
+        return "contacts";
     }
 
     @RequestMapping(path = "contact/{name}", method = RequestMethod.GET)

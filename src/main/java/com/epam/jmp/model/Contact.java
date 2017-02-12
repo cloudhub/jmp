@@ -3,10 +3,14 @@ package com.epam.jmp.model;
 import java.util.Objects;
 
 /**
- * Created by Aleksei_Akhrymenka on 10.02.2017.
+ * Created by alexei.okhrimenko on 10.02.2017.
  */
 public class Contact {
-    private Long id;
+
+    private Contact() {
+    }
+
+    private String id;
 
     private String firstName;
 
@@ -14,11 +18,11 @@ public class Contact {
 
     private String email;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,6 +48,37 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public static class ContactBuilder {
+        private Contact contact = new Contact();
+
+        public ContactBuilder() {
+        }
+
+        public Contact build() {
+            return contact;
+        }
+
+        public ContactBuilder id(String id) {
+            contact.id = id;
+            return this;
+        }
+
+        public ContactBuilder firstName(String firstName) {
+            contact.firstName = firstName;
+            return this;
+        }
+
+        public ContactBuilder lastName(String lastName) {
+            contact.lastName = lastName;
+            return this;
+        }
+
+        public ContactBuilder email(String email) {
+            contact.email = email;
+            return this;
+        }
     }
 
     @Override
