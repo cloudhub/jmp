@@ -10,6 +10,13 @@ public class Contact {
     private Contact() {
     }
 
+    public Contact(String id, String firstName, String lastName, String email) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
     private String id;
 
     private String firstName;
@@ -48,37 +55,6 @@ public class Contact {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public static class ContactBuilder {
-        private Contact contact = new Contact();
-
-        public ContactBuilder() {
-        }
-
-        public Contact build() {
-            return contact;
-        }
-
-        public ContactBuilder id(String id) {
-            contact.id = id;
-            return this;
-        }
-
-        public ContactBuilder firstName(String firstName) {
-            contact.firstName = firstName;
-            return this;
-        }
-
-        public ContactBuilder lastName(String lastName) {
-            contact.lastName = lastName;
-            return this;
-        }
-
-        public ContactBuilder email(String email) {
-            contact.email = email;
-            return this;
-        }
     }
 
     @Override

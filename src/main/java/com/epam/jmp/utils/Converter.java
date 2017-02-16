@@ -1,6 +1,7 @@
 package com.epam.jmp.utils;
 
 import com.epam.jmp.model.Contact;
+import com.epam.jmp.model.ContactBuilder;
 import org.springframework.core.io.Resource;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
@@ -46,7 +47,7 @@ public class Converter {
             if (node.getNodeType() == Node.ELEMENT_NODE) {
                 Element element = (Element) node;
 
-                Contact contact = new Contact.ContactBuilder()
+                Contact contact = new ContactBuilder()
                         .id(element.getElementsByTagName("id").item(0).getTextContent())
                         .firstName(element.getElementsByTagName("firstName").item(0).getTextContent())
                         .lastName(element.getElementsByTagName("lastName").item(0).getTextContent())
