@@ -1,7 +1,7 @@
-package com.epam.jmp.dao;
+package com.epam.jmp.cms.user.dao;
 
-import com.epam.jmp.model.Contact;
-import com.epam.jmp.utils.Converter;
+import com.epam.jmp.cms.user.model.Contact;
+import com.epam.jmp.cms.utils.XmlToObjConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
@@ -26,7 +26,7 @@ public class ContactDAO {
     public HashMap<String, Contact> getContactsFromXml() {
         HashMap<String, Contact> contactList = new HashMap<String, Contact>();
         try {
-            Converter.xmlToObject(contactList, resource);
+            XmlToObjConverter.xmlToObject(contactList, resource);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
@@ -39,7 +39,7 @@ public class ContactDAO {
 
     public void deleteContact(String id) {
         try {
-            Converter.deleteContact(id, resource);
+            XmlToObjConverter.deleteContact(id, resource);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SAXException e) {

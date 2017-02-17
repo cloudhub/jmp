@@ -1,4 +1,4 @@
-package com.epam.jmp.service;
+package com.epam.jmp.cms.user.service;
 
 import org.springframework.stereotype.Service;
 

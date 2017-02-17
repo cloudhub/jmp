@@ -1,4 +1,4 @@
-package com.epam.jmp.model;
+package com.epam.jmp.cms.user.model;
 
 import java.util.Objects;
 

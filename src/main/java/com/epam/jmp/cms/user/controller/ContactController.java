@@ -1,6 +1,6 @@
-package com.epam.jmp.controller;
+package com.epam.jmp.cms.user.controller;
 
-import com.epam.jmp.dao.ContactDAO;
+import com.epam.jmp.cms.user.dao.ContactDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

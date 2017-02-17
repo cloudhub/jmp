@@ -1,7 +1,7 @@
-package com.epam.jmp.utils;
+package com.epam.jmp.cms.utils;
 
-import com.epam.jmp.model.Contact;
-import com.epam.jmp.model.ContactBuilder;
+import com.epam.jmp.cms.user.model.Contact;
+import com.epam.jmp.cms.user.model.ContactBuilder;
 import org.springframework.core.io.Resource;
 import org.springframework.util.ResourceUtils;
 import org.w3c.dom.Document;
@@ -28,7 +28,7 @@ import java.util.HashMap;
 /**
  * Created by alexei.okhrimenko on 11.02.2017.
  */
-public class Converter {
+public class XmlToObjConverter {
 
     public static void xmlToObject(HashMap<String, Contact> contactList, Resource resource)
             throws IOException, ParserConfigurationException, SAXException {

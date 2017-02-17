@@ -1,4 +1,4 @@
-package com.epam.jmp.model;
+package com.epam.jmp.cms.user.model;
 
 /**
  * Created by alexei.okhrimenko on 17.02.2017.
