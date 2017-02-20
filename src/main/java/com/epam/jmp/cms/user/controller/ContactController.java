@@ -1,6 +1,7 @@
 package com.epam.jmp.cms.user.controller;
 
 import com.epam.jmp.cms.user.dao.ContactDAO;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/")
 public class ContactController {
+
+    private static final Logger LOGGER = Logger.getLogger(ContactController.class);
 
     @Autowired
     private ContactDAO contactDAO;
