@@ -4,10 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.epam.jmp</groupId>
-    <artifactId>cms</artifactId>
-    <packaging>war</packaging>
+    <artifactId>cms-root</artifactId>
+    <packaging>pom</packaging>
     <name>Contact Management System</name>
     <version>0.0.1</version>
+
+    <modules>
+        <module>web-app</module>
+        <module>web-service</module>
+    </modules>
 
     <properties>
         <jdk.version>1.8</jdk.version>
