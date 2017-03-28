@@ -1,5 +1,6 @@
 package com.epam.jmp.cms.user.controller;
 
+import com.epam.jmp.cms.admin.Admin;
 import com.epam.jmp.cms.user.dao.ContactDAO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class ContactController {
     @Autowired
     private ContactDAO contactDAO;
 
+    @Autowired
+    private Admin admin;
+
     @RequestMapping(value = "welcome", method = RequestMethod.GET)
     public String printHello(ModelMap model) {
         model.addAttribute("msg", "OK");
@@ -40,6 +44,7 @@ public class ContactController {
     @RequestMapping(value = "contacts", method = RequestMethod.GET)
     public String getAllContacts(Model model) {
         model.addAttribute("contacts", contactDAO.getContactsFromXml());
+        LOGGER.debug(admin.getEmailList());
         return "contacts";
     }
 

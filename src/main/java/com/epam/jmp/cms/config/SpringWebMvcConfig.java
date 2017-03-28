@@ -3,6 +3,7 @@ package com.epam.jmp.cms.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.epam.jmp")
+@ImportResource({"WEB-INF/spring-datasource.xml", "WEB-INF/admin.xml"})
 public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 
     // equivalents for <mvc:resources/> tags
