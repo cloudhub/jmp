@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="admin" class="com.epam.jmp.cms.admin.Admin">
+        <property name="emailList">
+            <list>
+                <value>support@email.com</value>
+                <value>info@email.com</value>
+                <value>admin@email.com</value>
+            </list>
+        </property>
+    </bean>
+</beans>
