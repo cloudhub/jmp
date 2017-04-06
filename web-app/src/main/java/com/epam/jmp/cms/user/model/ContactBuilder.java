@@ -4,7 +4,7 @@ package com.epam.jmp.cms.user.model;
  * Created by alexei.okhrimenko on 17.02.2017.
  */
 public class ContactBuilder {
-    private String id;
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -13,7 +13,7 @@ public class ContactBuilder {
         return new Contact(id, firstName, lastName, email);
     }
 
-    public ContactBuilder id(String id) {
+    public ContactBuilder id(int id) {
         this.id = id;
         return this;
     }
