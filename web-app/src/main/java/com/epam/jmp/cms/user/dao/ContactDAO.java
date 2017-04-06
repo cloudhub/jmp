@@ -1,55 +1,45 @@
 package com.epam.jmp.cms.user.dao;
 
 import com.epam.jmp.cms.user.model.Contact;
-import com.epam.jmp.cms.utils.XmlToObjConverter;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
+import com.epam.jmp.dao.BaseDao;
+import org.apache.log4j.Logger;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Repository;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.HashMap;
+import java.util.List;
 
 /**
- * Created by alexei.okhrimenko on 12.02.2017.
+ * Created by Aleksei_Okhrimenko on 04.04.2017.
  */
-
 @Repository
-public class ContactDAO {
+public class ContactDao extends BaseDao {
 
-    @Value(value = "classpath:/data.xml")
-    private Resource resource;
+    public static final Logger LOGGER = Logger.getLogger(ContactDao.class);
 
-    public HashMap<String, Contact> getContactsFromXml() {
-        HashMap<String, Contact> contactList = new HashMap<String, Contact>();
-        try {
-            XmlToObjConverter.xmlToObject(contactList, resource);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        }
-        return contactList;
+    public List<Contact> findAll() {
+        String sql = "SELECT * FROM contacts";
+        List<Contact> contacts = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Contact.class));
+        return contacts;
     }
 
-    public void deleteContact(String id) {
-        try {
-            XmlToObjConverter.deleteContact(id, resource);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (TransformerException e) {
-            e.printStackTrace();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
+    public Contact findById(int id) {
+        String sql = "SELECT * FROM contacts WHERE id = ?";
+        Contact contact = (Contact) jdbcTemplate.queryForObject(sql, new Object[] {id}, new BeanPropertyRowMapper(Contact.class));
+        return contact;
+    }
+
+    public void create(Contact contact) {
+        String sql = "INSERT INTO contacts (firstname, lastname, email) VALUES (?, ?, ?)";
+        jdbcTemplate.update(sql, new Object[]{contact.getFirstName(), contact.getLastName(), contact.getEmail()});
+    }
+
+    public void update(Contact contact) {
+        String sql = "UPDATE contacts SET firstname=?,lastname=?,email=? WHERE id=?";
+        jdbcTemplate.update(sql, contact.getFirstName(), contact.getLastName(), contact.getEmail(), contact.getId());
+    }
+
+    public void delete(int id) {
+        String sql = "DELETE FROM contacts WHERE id=?";
+        jdbcTemplate.update(sql, id);
     }
 }

@@ -48,7 +48,7 @@ public class XmlToObjConverter {
                 Element element = (Element) node;
 
                 Contact contact = new ContactBuilder()
-                        .id(element.getElementsByTagName("id").item(0).getTextContent())
+                        .id(Integer.parseInt(element.getElementsByTagName("id").item(0).getTextContent()))
                         .firstName(element.getElementsByTagName("firstName").item(0).getTextContent())
                         .lastName(element.getElementsByTagName("lastName").item(0).getTextContent())
                         .email(element.getElementsByTagName("email").item(0).getTextContent())
