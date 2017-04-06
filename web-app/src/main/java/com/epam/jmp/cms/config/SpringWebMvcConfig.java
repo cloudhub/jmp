@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.epam.jmp")
-@ImportResource({"WEB-INF/spring-datasource.xml", "WEB-INF/admin.xml"})
+@ImportResource("classpath:spring-module.xml")
 public class SpringWebMvcConfig extends WebMvcConfigurerAdapter {
 
     // equivalents for <mvc:resources/> tags
