@@ -22,7 +22,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="#home">Home</a></li>
                 <li class="active"><a href="#">All Contacts</a></li>
-                <li><a href="#contact">Search contact</a></li>
+                <li><a href="#contact">Search</a></li>
             </ul>
         </div>
     </div>
