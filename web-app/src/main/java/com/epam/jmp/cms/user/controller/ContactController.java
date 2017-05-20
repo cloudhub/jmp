@@ -2,23 +2,31 @@ package com.epam.jmp.cms.user.controller;
 
 import com.epam.jmp.cms.admin.Admin;
 import com.epam.jmp.cms.user.model.Contact;
+import com.epam.jmp.cms.user.model.Description;
 import com.epam.jmp.cms.user.service.ContactService;
 import com.epam.jmp.cms.utils.ContactDAO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by alexei.okhrimenko on 07.02.2017.
  */
 
 @Controller
+@SessionAttributes("contact")
 @RequestMapping("/")
 public class ContactController {
 
@@ -78,6 +86,30 @@ public class ContactController {
     public ModelAndView editContactForm(@ModelAttribute Contact contact) {
         service.update(contact);
         return new ModelAndView("redirect:/contacts");
+    }
+
+    /*TODO refactoring*/
+    @RequestMapping(value = "description", method = RequestMethod.POST)
+    public ResponseEntity<Description> updateDescription(@RequestBody Description description){
+        if (description != null) {
+            description.setPoints(description.getPoints() + 20);
+        }
+        return new ResponseEntity<Description>(description, HttpStatus.OK);
+    }
+
+    /*TODO refactoring*/
+    @RequestMapping(value = "summary", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Contact> summary(@RequestHeader(value="User-Agent", defaultValue="foo") String userAgent,
+                                 @CookieValue(value = "hitCounter", defaultValue = "0") Long hitCounter,
+                                 HttpServletResponse response) throws IOException {
+        hitCounter++;
+        if (hitCounter>5) {
+            throw new IOException("this is io exception");
+        }
+        Cookie cookie = new Cookie("hitCounter", hitCounter.toString());
+        response.addCookie(cookie);
+        return service.findAll();
     }
 
     /*TODO refactoring*/
